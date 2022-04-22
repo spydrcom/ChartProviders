@@ -18,6 +18,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Gral"/>
 	<classpathentry kind="lib" path="lib/bfo.zip"/>
 	<classpathentry kind="lib" path="lib/RinearnGraph3D.jar"/>
-	<classpathentry kind="lib" path="/CalcLibArchive/lib/JFree.zip"/>
+	<classpathentry kind="lib" path="lib/JFree.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
