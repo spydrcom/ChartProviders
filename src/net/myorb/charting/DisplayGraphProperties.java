@@ -9,6 +9,7 @@ import net.myorb.data.abstractions.SimplePropertiesManager;
 import net.myorb.gui.graphics.ColorTools;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -116,6 +117,7 @@ class PropertyTokensParser extends CommonCommandParser
 
 	public String getIdnLead () { return IDN_LEAD; }
 	public String getWhiteSpace () { return WHITE_SPACE; }
+	public Collection<String> getCommentIndicators() { return null; }
 	public String getMultiCharacterOperator () { return MULTI_CHARACTER_OPERATOR; }
 	public String getExtendedOperator () { return OPERATOR_EXTENDED; }
 	public String getOperator () { return OPERATOR; }
