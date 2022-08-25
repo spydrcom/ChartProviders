@@ -189,7 +189,7 @@ public class ChartLibSupport extends GralPrimitives
 	public static Component makeBarChartComponent
 		(String title, Portions portions)
 	{
-		DisplayGraphProperties.setPalette ();
+		DisplayGraphProperties.setPalate ();
 		return toComponent (BarAndPieSupport.makeBarChart (title, portions));
 	}
 
@@ -203,7 +203,7 @@ public class ChartLibSupport extends GralPrimitives
 	public static Component makePieChartComponent
 		(String title, Portions portions)
 	{
-		DisplayGraphProperties.setPalette ();
+		DisplayGraphProperties.setPalate ();
 		return toComponent (BarAndPieSupport.makePieChart (title, portions));
 	}
 
@@ -233,7 +233,7 @@ public class ChartLibSupport extends GralPrimitives
 	 */
 	public static XYPlot getPlotFor (DataSeries[] series)
 	{
-		XYPlot plot = new XYPlot (series); DisplayGraphProperties.setPalette ();
+		XYPlot plot = new XYPlot (series); DisplayGraphProperties.setPalate ();
 		int c = 0; for (DataSeries data : series) setRendering (plot, data, PlotLegend.COLORS[c++]);
 		orientLegend (plot.getLegend (), Orientation.HORIZONTAL);
 		//orientLegend (plot.getLegend (), plot);

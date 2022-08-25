@@ -62,9 +62,9 @@ public class DisplayGraphProperties
 	}
 
 	/**
-	 * set palette to property values
+	 * set palate to property values
 	 */
-	public static void setPalette ()
+	public static void setPalate ()
 	{
 		SimplePropertiesManager.PropertyValueList
 					propertyValue = getChartProperty ("PALETTE");
@@ -72,7 +72,7 @@ public class DisplayGraphProperties
 		{
 			ArrayList <Integer> list = new ArrayList <> ();
 			ColorTools.parseColorList (propertyValue, list);
-			PlotLegend.setPalette (list.toArray (new Integer[]{}));
+			PlotLegend.setPalate (list.toArray (new Integer[]{}));
 		}
 	}
 

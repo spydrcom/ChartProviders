@@ -156,7 +156,7 @@ public class BarAndPieSupport extends BarAndPieStyles
 			CategorizedPortions portions
 		)
 	{
-		DisplayGraphProperties.setPalette ();
+		DisplayGraphProperties.setPalate ();
 		String[] categories = portions.getCategories ();
 		AxesGraph graph = new AxesGraph (); setTitle (graph);
 		graph.setDefaultColors (PlotLegend.COLORS);
@@ -218,7 +218,7 @@ public class BarAndPieSupport extends BarAndPieStyles
 	public AxesGraph makeZaxisBarChart
 	(MultiBarSeries group, String[] catagories)
 	{
-		DisplayGraphProperties.setPalette ();
+		DisplayGraphProperties.setPalate ();
 		AxesGraph graph = new AxesGraph ();
 		graph.setDefaultColors (PlotLegend.COLORS);
         graph.addSeries (group); setKey (graph, catagories);
@@ -266,7 +266,7 @@ public class BarAndPieSupport extends BarAndPieStyles
 			Portions portions
 		)
 	{
-		DisplayGraphProperties.setPalette ();
+		DisplayGraphProperties.setPalate ();
 		PieGraph graph = new PieGraph ();
 		graph.setDefaultColors (PlotLegend.COLORS);
 		for (Portion p : portions) graph.set (p.getName (), p.getPortion ());

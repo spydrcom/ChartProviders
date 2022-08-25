@@ -285,7 +285,7 @@ public class ChartLibSupport
 			DisplayGraphTypes.Colors colors
 		)
 	{
-		DisplayGraphProperties.setPalette ();
+		DisplayGraphProperties.setPalate ();
 		XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer (renderLines, renderShapes);
 		if (forSet >= PlotLegend.COLORS.length) throw new RuntimeException ("Excessive plot count request");
 		renderer.setAutoPopulateSeriesPaint (false); renderer.setBasePaint (PlotLegend.COLORS[forSet]);

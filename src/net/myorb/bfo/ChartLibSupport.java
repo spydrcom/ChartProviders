@@ -118,7 +118,7 @@ public class ChartLibSupport extends BfoPrimitives
 	public static AxesGraph cvtToMultiSeries (String[] names, PlotCollection points)
 	{
 		int color = 0;
-		DisplayGraphProperties.setPalette ();
+		DisplayGraphProperties.setPalate ();
 		AxesGraph graph = new AxesGraph ();
 
 		StyleWrapper properties = getStyle ("KEY_STYLE", KindOfStyle.KEY);

@@ -62,18 +62,29 @@ public class PlotLegend extends ColorTools
 	}
 
 
+	/*
+	 * Plot Color Palate
+	 */
+
+	public static final Color
+		SADDLE = Color.decode ("0x8B4513"),	DRED = Color.decode ("0x8B0000"),	DGREEN = Color.decode ("0x6400"),
+		OLIVE = Color.decode ("0x556B2F"),	TEAL = Color.decode ("0x8080"),		INDIGO = Color.decode ("0x4B0082"),		
+		BRICK = Color.decode ("0xB22222"),	SLATE = Color.decode ("0x6A5ACD"),	NAVY = Color.decode ("0x80");
 	public static final String LEGEND_IDENTIFIER = "LEGEND";
 	public static Color[] COLORS = new Color[]
 	{
-		Color.BLUE,		Color.RED,		Color.GREEN,	Color.MAGENTA,
-		Color.ORANGE,	Color.CYAN,		Color.YELLOW,	Color.PINK
+		Color.BLUE,			Color.RED,		Color.GREEN,
+		Color.ORANGE,		DGREEN,			Color.CYAN,
+		Color.MAGENTA,		TEAL,			INDIGO,
+		SADDLE,				OLIVE,			NAVY,
+		BRICK,				DRED
 	};
 
 
 	/**
-	 * @param values the RGBA values for the new palette
+	 * @param values the RGBA values for the new palate
 	 */
-	public static void setPalette (Integer[] values) { COLORS = getColors (values); applyAlpha (); }
+	public static void setPalate (Integer[] values) { COLORS = getColors (values); applyAlpha (); }
 
 
 	/**
