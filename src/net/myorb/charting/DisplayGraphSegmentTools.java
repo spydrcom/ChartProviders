@@ -2,6 +2,7 @@
 package net.myorb.charting;
 
 import net.myorb.charting.DisplayGraphSegmenting;
+
 import net.myorb.charting.DisplayGraphTypes.NamedSegment;
 import net.myorb.charting.DisplayGraphTypes.PlotCollection;
 import net.myorb.charting.DisplayGraphTypes.Point;
@@ -28,6 +29,30 @@ public class DisplayGraphSegmentTools
 	 * a list of segments
 	 */
 	@SuppressWarnings ("serial") public static class SegmentList extends ArrayList <NamedSegment> {}
+
+
+	/**
+	 * remove out-of-range points breaking plots into segments
+	 * @param sourcePlots the plots with segment denoted by out-of-range marks
+	 * @param separated each segment becomes a separate plot
+	 */
+	public static void separateSegments (PlotCollection sourcePlots, PlotCollection separated)
+	{
+		Point.Series series = null;
+		for (Point.Series source : sourcePlots)
+		{
+			for (Point p : source)
+			{
+				if ( ! p.outOfRange )
+				{
+					if (series == null)
+					{ separated.add (series = new Point.Series ()); }
+					series.add (p);
+				}
+				else { series = null; }
+			}
+		}
+	}
 
 
 	/**

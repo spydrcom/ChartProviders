@@ -31,7 +31,6 @@ import java.awt.Color;
 public class ChartLibSupport extends GralPrimitives
 {
 
-
 	/**
 	 * build chart component
 	 * @param funcPlots the collection of plot points
