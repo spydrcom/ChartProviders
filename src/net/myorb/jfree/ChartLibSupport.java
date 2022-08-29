@@ -31,6 +31,7 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.data.xy.XYSeries;
 
+// JRE swing and AWT
 import javax.swing.JComponent;
 import java.awt.Color;
 
@@ -46,7 +47,8 @@ public class ChartLibSupport
 	 * JFree Chart boiler plate
 	 */
 
-    /**
+
+	/**
      * JFreeChart boiler plate for bar chart
      * @param dataset the data management object
      * @param title the title for the chart
@@ -106,7 +108,7 @@ public class ChartLibSupport
 	}
 
 
-    /*
+	/*
 	 * JFreeChart primitive conversions
 	 */
 
@@ -347,6 +349,7 @@ public class ChartLibSupport
     	XYSeriesCollection interp = cvtToColl (cvtToSeries ("Interpolation", funcPlot));
     	return RegressionCharts.makeRegressionChart (title, data, interp, "X", "Y");
 	}
+
 
 }
 
