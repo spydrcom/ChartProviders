@@ -3,11 +3,13 @@ package net.myorb.jfree;
 
 // CalcLib charting
 import net.myorb.charting.PlotLegend;
-import net.myorb.charting.DisplayGraphTypes;
+import net.myorb.charting.DisplayGraphProperties;
+import net.myorb.charting.DisplayGraphSegmentTools;
+
+//CalcLib charting . DisplayGraphTypes
 import net.myorb.charting.DisplayGraphTypes.PlotCollection;
 import net.myorb.charting.DisplayGraphTypes.Point;
-import net.myorb.charting.DisplayGraphSegmentTools;
-import net.myorb.charting.DisplayGraphProperties;
+import net.myorb.charting.DisplayGraphTypes;
 
 // JFreeChart
 import org.jfree.chart.ChartPanel;
@@ -155,11 +157,28 @@ public class ChartLibSupport
 	 * @param points the list of series points
 	 * @return collection of series
 	 */
-	public static XYSeriesCollection[] cvtToMultiSeries (DisplayGraphTypes.PlotCollection points)
+	public static XYSeriesCollection[] cvtToMultiSeries
+		(DisplayGraphTypes.PlotCollection points)
 	{
-		String[] names = new String[points.size ()];
-		for (int i=0; i<points.size();i++) { names[i] = "f" + Integer.toString (i); }
-		return cvtToMultiSeries (names, points);
+		return cvtToMultiSeries (points, "f");
+	}
+
+
+	/**
+	 * build series collection from lists of points
+	 * @param points the list of series points to be plotted
+	 * @param primaryName the name of the function
+	 * @return collection of series
+	 */
+	public static XYSeriesCollection[] cvtToMultiSeries
+		(DisplayGraphTypes.PlotCollection points, String primaryName)
+	{
+		return cvtToMultiSeries
+		(
+			DisplayGraphSegmentTools.segmentNames
+				(points.size (), primaryName),
+			points
+		);
 	}
 
 

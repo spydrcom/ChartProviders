@@ -31,6 +31,59 @@ public class DisplayGraphSegmentTools
 	@SuppressWarnings ("serial") public static class SegmentList extends ArrayList <NamedSegment> {}
 
 
+	/*
+	 * segment naming conventions
+	 */
+
+
+	/**
+	 * construct names for the segments with a primary name
+	 * @param segmentCount the number of segments to be plotted
+	 * @param primaryName the primary name for the group
+	 * @return the list of names to use
+	 */
+	public static String[] segmentNames (int segmentCount, String primaryName)
+	{
+		String[] names =
+				DisplayGraphSegmentTools.initialSegmentNames
+					(segmentCount);
+		names[0] = primaryName;
+		return names;
+	}
+
+
+	/**
+	 * construct names for the segments
+	 * @param segmentCount the number of segments to be plotted
+	 * @return the list of names to use
+	 */
+	public static String[] initialSegmentNames (int segmentCount)
+	{
+		String[] segmentsNameList = new String [segmentCount];
+
+		for (int i = 0; i < segmentCount; i++)
+		{
+			addNameFor (i, segmentsNameList);
+		}
+
+		return segmentsNameList;
+	}
+
+
+	/**
+	 * assign a name to the segment identified by index
+	 * @param item the index into the plot collection
+	 * @param segmentsNameList the list being compiled
+	 */
+	public static void addNameFor (int item, String[] segmentsNameList)
+	{ segmentsNameList [item] = "#" + Integer.toString (item + 1); }
+
+
+	/*
+	 * segment recognition conventions
+	 */
+
+
 	/**
 	 * remove out-of-range points breaking plots into segments
 	 * @param sourcePlots the plots with segment denoted by out-of-range marks
