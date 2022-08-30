@@ -8,10 +8,11 @@ import net.myorb.data.abstractions.Function;
 
 import net.myorb.gui.graphics.DisplayImaging;
 
-import java.awt.Color;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
+
+import java.awt.Color;
 
 /**
  * lists of data that describe plots
@@ -43,7 +44,26 @@ public class DisplayGraphTypes extends DisplayImaging
 		public double x, y;
 		public boolean outOfRange = false;
 		public static class Series extends ArrayList<Point>
-		{ private static final long serialVersionUID = 1766515409673116432L; }
+		{
+
+			/**
+			 * translate a point series to coordinate lists
+			 * @param xData a list collecting the x coordinates from the series
+			 * @param yData a list collecting the y coordinates from the series
+			 */
+			public void toCoordinateLists
+			(List<Number> xData, List<Number> yData)
+			{
+				for (Point p : this)
+				{
+					Double py = p.y;
+					if ( p.outOfRange || py.isNaN() ) continue;
+					xData.add (p.x); yData.add (p.y);
+				}
+			}
+
+			private static final long serialVersionUID = 1766515409673116432L;
+		}
 		public String toString () { return "(" + x + "," + y + ")"; }
 		public Point (double x, double y) { this.x = x; this.y = y; }
 		public Point () {}
@@ -56,10 +76,12 @@ public class DisplayGraphTypes extends DisplayImaging
 	public static class PointCollection extends Point.Series
 		implements DataSequence2D.PointCollector<Double>
 	{
+
 		/* (non-Javadoc)
 		 * @see net.myorb.math.DataSequence2D.PointCollector#addPoint(java.lang.Object, java.lang.Object)
 		 */
 		public void addPoint (Double x, Double y) { add (new Point (x, y)); }
+
 		private static final long serialVersionUID = 824420407949674125L;
 	}
 
