@@ -1,13 +1,16 @@
 
 package net.myorb.gral;
 
-// CalcLib chart properties
+// CalcLib chart . DisplayGraphLibraryInterface
+import net.myorb.charting.DisplayGraphLibraryInterface.Portion;
+import net.myorb.charting.DisplayGraphLibraryInterface.Portions;
+
+//CalcLib chart properties
 import net.myorb.charting.DisplayGraphProperties;
 import net.myorb.charting.DisplayGraphSegmentTools;
 import net.myorb.charting.DisplayGraphTypes.Point;
 import net.myorb.charting.PlotLegend;
-import net.myorb.charting.DisplayGraphLibraryInterface.Portion;
-import net.myorb.charting.DisplayGraphLibraryInterface.Portions;
+
 //GRAL graphics
 import de.erichseifert.gral.graphics.Label;
 import de.erichseifert.gral.graphics.Drawable;
