@@ -307,9 +307,10 @@ public class ChartLibSupport
 		)
 	{
 		DisplayGraphProperties.setPalate ();
+		Color[] colorList = PlotLegend.getPalate ();
 		XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer (renderLines, renderShapes);
-		if (forSet >= PlotLegend.COLORS.length) throw new RuntimeException ("Excessive plot count request");
-		renderer.setAutoPopulateSeriesPaint (false); renderer.setBasePaint (PlotLegend.COLORS[forSet]);
+		if (forSet >= colorList.length) throw new RuntimeException ("Excessive plot count request");
+		renderer.setAutoPopulateSeriesPaint (false); renderer.setBasePaint (colorList[forSet]);
 
 		ofPlot.setDataset (forSet, fromCollection);
 		ofPlot.mapDatasetToDomainAxis (forSet, 0);

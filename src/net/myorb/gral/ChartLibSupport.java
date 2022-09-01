@@ -232,8 +232,10 @@ public class ChartLibSupport extends GralPrimitives
 	 */
 	public static XYPlot getPlotFor (DataSeries[] series)
 	{
-		XYPlot plot = new XYPlot (series); DisplayGraphProperties.setPalate ();
-		int c = 0; for (DataSeries data : series) setRendering (plot, data, PlotLegend.COLORS[c++]);
+		XYPlot plot = new XYPlot (series);
+		DisplayGraphProperties.setPalate ();
+		Color[] colorList = PlotLegend.getPalate ();
+		int c = 0; for (DataSeries data : series) setRendering (plot, data, colorList[c++]);
 		orientLegend (plot.getLegend (), Orientation.HORIZONTAL);
 		//orientLegend (plot.getLegend (), plot);
 		plot.setLegendVisible (true);

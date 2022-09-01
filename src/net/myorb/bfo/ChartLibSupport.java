@@ -242,7 +242,7 @@ public class ChartLibSupport extends BfoPrimitives
 			LineSeries series =
 				new LineSeries (segment.getName ());
 			for (Point p : segment) series.set (p.x, p.y);
-			setStyleFor (series, PlotLegend.COLORS[nextColor++]);
+			setStyleFor (series, PlotLegend.getPalate ()[nextColor++]);
 			if (key != null) key.addSeries (series, keyTextProperties.getTextStyle ());
 			return series;
 		}

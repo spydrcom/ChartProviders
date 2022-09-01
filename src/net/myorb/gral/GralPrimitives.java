@@ -479,7 +479,7 @@ public class GralPrimitives extends DisplayGraphSegmentTools
 	{
 		StyleWrapper barProperties =
 		GralProperties.getStyle ("GRAL_BARS", GralProperties.KindOfStyle.BARS);
-		barProperties.setColor (PlotLegend.COLORS[barIndex]);
+		barProperties.setColor (PlotLegend.getPalate ()[barIndex]);
 		return barProperties;
 	}
 

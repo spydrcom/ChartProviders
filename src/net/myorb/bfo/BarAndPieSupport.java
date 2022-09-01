@@ -159,7 +159,7 @@ public class BarAndPieSupport extends BarAndPieStyles
 		DisplayGraphProperties.setPalate ();
 		String[] categories = portions.getCategories ();
 		AxesGraph graph = new AxesGraph (); setTitle (graph);
-		graph.setDefaultColors (PlotLegend.COLORS);
+		graph.setDefaultColors (PlotLegend.getPalate ());
 	
 		for (int i = 0; i < categories.length; i++)
 		{
@@ -220,7 +220,7 @@ public class BarAndPieSupport extends BarAndPieStyles
 	{
 		DisplayGraphProperties.setPalate ();
 		AxesGraph graph = new AxesGraph ();
-		graph.setDefaultColors (PlotLegend.COLORS);
+		graph.setDefaultColors (PlotLegend.getPalate ());
         graph.addSeries (group); setKey (graph, catagories);
         setAxis (graph, true, true);
         setTitle (graph);
@@ -268,7 +268,7 @@ public class BarAndPieSupport extends BarAndPieStyles
 	{
 		DisplayGraphProperties.setPalate ();
 		PieGraph graph = new PieGraph ();
-		graph.setDefaultColors (PlotLegend.COLORS);
+		graph.setDefaultColors (PlotLegend.getPalate ());
 		for (Portion p : portions) graph.set (p.getName (), p.getPortion ());
         graph.setLightVector (1, 0, -1); BfoPrimitives.setRotation (graph);
         graph.setDepth (30); setKey (graph, portions);

@@ -71,7 +71,7 @@ public class PlotLegend extends ColorTools
 		OLIVE = Color.decode ("0x556B2F"),	TEAL = Color.decode ("0x8080"),		INDIGO = Color.decode ("0x4B0082"),		
 		BRICK = Color.decode ("0xB22222"),	SLATE = Color.decode ("0x6A5ACD"),	NAVY = Color.decode ("0x80");
 	public static final String LEGEND_IDENTIFIER = "LEGEND";
-	public static Color[] COLORS = new Color[]
+	private static Color[] colorList = new Color[]
 	{
 		Color.BLUE,			Color.RED,		Color.GREEN,
 		Color.ORANGE,		DGREEN,			Color.CYAN,
@@ -79,12 +79,13 @@ public class PlotLegend extends ColorTools
 		SADDLE,				OLIVE,			NAVY,
 		BRICK,				DRED
 	};
+	public static Color[] getPalate () { return colorList; }
 
 
 	/**
 	 * @param values the RGBA values for the new palate
 	 */
-	public static void setPalate (Integer[] values) { COLORS = getColors (values); applyAlpha (); }
+	public static void setPalate (Integer[] values) { colorList = getColors (values); applyAlpha (); }
 
 
 	/**
@@ -93,7 +94,7 @@ public class PlotLegend extends ColorTools
 	public static void applyAlpha ()
 	{
 		SimplePropertiesManager.PropertyValueList propertyValue = DisplayGraphProperties.getChartProperty ("ALPHA");
-		if (propertyValue != null) applyAlpha (COLORS, propertyValue.get (0).getTokenValueAsCoded ().intValue ());
+		if (propertyValue != null) applyAlpha (colorList, propertyValue.get (0).getTokenValueAsCoded ().intValue ());
 		
 	}
 
@@ -104,7 +105,7 @@ public class PlotLegend extends ColorTools
 	public static DisplayGraphTypes.Colors getColorList ()
 	{
 		DisplayGraphTypes.Colors colors = new DisplayGraphTypes.Colors ();
-		for (Color c : COLORS) colors.add (c);
+		for (Color c : colorList) colors.add (c);
 		return colors;
 	}
 
@@ -118,13 +119,13 @@ public class PlotLegend extends ColorTools
 	public static JPanel makeLegend (Map<String,Object> map, int size)
 	{
 		JPanel p = new JPanel ();
-		int rows = COLORS.length;
+		int rows = colorList.length;
 		p.setLayout (new GridLayout (rows, 2));
 		p.setBackground (Color.GRAY);
 		
 		for (int r = 0; r < rows; r++)
 		{
-			Color color = COLORS[r];
+			Color color = colorList[r];
 
 			JLabel l = new JLabel ("", JLabel.RIGHT);
 			l.setBackground (Color.GRAY);
@@ -175,7 +176,7 @@ public class PlotLegend extends ColorTools
 	 */
 	public static void setXValue (Map<String,Object> map, String value)
 	{
-		int n = COLORS.length - 1;
+		int n = colorList.length - 1;
 		setExpression (map, n, "x");
 		setValue (map, n, value);
 	}

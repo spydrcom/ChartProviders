@@ -6,6 +6,8 @@ import net.myorb.charting.DisplayGraphLibraryInterface.Portions;
 import net.myorb.charting.DisplayGraphProperties;
 import net.myorb.charting.PlotLegend;
 
+import java.awt.Color;
+
 // BFO
 import org.faceless.graph2.Graph;
 import org.faceless.graph2.Key;
@@ -68,9 +70,11 @@ public class BarAndPieStyles extends BfoPrimitives
 	(Key key, String[] names, StyleWrapper keyText, StyleWrapper markers)
 	{
         int c = 0;
+		Color[] colorList = PlotLegend.getPalate ();
+
         for (String name : names)
         {
-        	markers.setColor (PlotLegend.COLORS[c++]);
+        	markers.setColor (colorList[c++]);
         	customizeKey (name, keyText, markers, key);
         }
 	}
