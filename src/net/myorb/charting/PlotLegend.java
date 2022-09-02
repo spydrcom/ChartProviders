@@ -64,31 +64,31 @@ public class PlotLegend extends ColorTools
 
 
 	/*
-	 * Plot Color Palate
-	 */
-
-
-	public static Color[]
-			getPalate () { return colorList; }
-	public static final String LEGEND_IDENTIFIER = "LEGEND";
-	private static Color[] colorList;
-	static PalateTool palate;
-
-	/*
 	 * Palate tool created and used to read current color list
 	 */
 
-	static
+
+	/**
+	 * identify source of legend color list
+	 * @param filePath the path to the source file
+	 */
+	public static void setLegendPalate (String filePath)
 	{
-		palate = new PalateTool ();
+		palate = new PalateTool (filePath);
 		colorList = palate.getPalateColors ();
 	}
+	public static Color[] getPalate () { return colorList; }
+	public static PalateTool getPalateTool () { return palate; }
+	public static final String LEGEND_IDENTIFIER = "LEGEND";
+	private static Color[] colorList;
+	static PalateTool palate;
 
 
 	/**
 	 * @param values the RGBA values for the new palate
 	 */
-	public static void setPalate (Integer[] values) { colorList = getColors (values); applyAlpha (); }
+	public static void setPalate (Integer[] values)
+	{ colorList = getColors (values); applyAlpha (); }
 
 
 	/**
@@ -96,9 +96,19 @@ public class PlotLegend extends ColorTools
 	 */
 	public static void applyAlpha ()
 	{
-		SimplePropertiesManager.PropertyValueList propertyValue = DisplayGraphProperties.getChartProperty ("ALPHA");
-		if (propertyValue != null) applyAlpha (colorList, propertyValue.get (0).getTokenValueAsCoded ().intValue ());
-		
+		SimplePropertiesManager.PropertyValueList propertyValue =
+			DisplayGraphProperties.getChartProperty ("ALPHA");
+		if (propertyValue != null)
+		{
+			applyAlpha
+			(
+				colorList,
+
+				propertyValue.get (0)
+					.getTokenValueAsCoded ()
+					.intValue ()
+			);
+		}
 	}
 
 
