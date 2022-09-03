@@ -75,12 +75,15 @@ public class PlotLegend extends ColorTools
 	public static void setLegendPalate (String filePath)
 	{
 		palate = new PalateTool (filePath);
-		colorList = palate.getPalateColors ();
 	}
-	public static Color[] getPalate () { return colorList; }
+
+	/**
+	 * @return the current list of colors in the palate
+	 */
+	public static Color[] getPalate ()
+	{ return palate.getPalateColors (); }
 	public static PalateTool getPalateTool () { return palate; }
 	public static final String LEGEND_IDENTIFIER = "LEGEND";
-	private static Color[] colorList;
 	static PalateTool palate;
 
 
@@ -88,7 +91,7 @@ public class PlotLegend extends ColorTools
 	 * @param values the RGBA values for the new palate
 	 */
 	public static void setPalate (Integer[] values)
-	{ colorList = getColors (values); applyAlpha (); }
+	{ palate.setPalateColors (getColors (values)); applyAlpha (); }
 
 
 	/**
@@ -102,7 +105,7 @@ public class PlotLegend extends ColorTools
 		{
 			applyAlpha
 			(
-				colorList,
+				palate.getPalateColors (),
 
 				propertyValue.get (0)
 					.getTokenValueAsCoded ()
@@ -117,6 +120,7 @@ public class PlotLegend extends ColorTools
 	 */
 	public static DisplayGraphTypes.Colors getColorList ()
 	{
+		Color[] colorList = palate.getPalateColors ();
 		DisplayGraphTypes.Colors colors = new DisplayGraphTypes.Colors ();
 		for (Color c : colorList) colors.add (c);
 		return colors;
@@ -136,8 +140,11 @@ public class PlotLegend extends ColorTools
 	 */
 	public static JPanel makeLegend (Map<String,Object> map, int size)
 	{
-		JPanel p = new JPanel ();
+		Color[] colorList =
+			palate.getPalateColors ();
 		int rows = colorList.length;
+
+		JPanel p = new JPanel ();
 		p.setLayout (new GridLayout (rows, 2));
 		p.setBackground (Color.GRAY);
 		
@@ -194,9 +201,8 @@ public class PlotLegend extends ColorTools
 	 */
 	public static void setXValue (Map<String,Object> map, String value)
 	{
-		int n = colorList.length - 1;
-		setExpression (map, n, "x");
-		setValue (map, n, value);
+		int n = palate.getPalateColors ().length - 1;
+		setExpression (map, n, "x"); setValue (map, n, value);
 	}
 
 

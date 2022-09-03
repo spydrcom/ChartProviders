@@ -19,6 +19,7 @@ import java.util.List;
 public class DisplayGraphProperties
 {
 
+
 	/**
 	 * get simple value for named property
 	 * @param propertyName the name of the property
@@ -31,6 +32,7 @@ public class DisplayGraphProperties
 		if (propertyValue != null) return SimplePropertiesManager.pgetText (propertyValue, 0);
 		return "";
 	}
+
 
 	/**
 	 * get text values for named property
@@ -48,6 +50,7 @@ public class DisplayGraphProperties
 		return list;
 	}
 
+
 	/**
 	 * get simple value for named property
 	 * @param propertyName the name of the property
@@ -60,6 +63,7 @@ public class DisplayGraphProperties
 		if (propertyValue != null) return SimplePropertiesManager.pgetNumber (propertyValue, 0);
 		return Double.MIN_VALUE;
 	}
+
 
 	/**
 	 * set palate to property values
@@ -93,6 +97,7 @@ public class DisplayGraphProperties
 
 
 	/**
+	 * get the token segments parser for properties
 	 * @return token segments descriptor for properties
 	 */
 	public static SpecialTokenSegments getPropertyTokens ()
@@ -118,7 +123,7 @@ class PropertyTokensParser extends CommonCommandParser
 	public String getIdnLead () { return IDN_LEAD; }
 	public String getWhiteSpace () { return WHITE_SPACE; }
 	public String getSequenceCaptureMarkers () { return null; }
-	public Collection<String> getCommentIndicators() { return null; }
+	public Collection <String> getCommentIndicators () { return null; }
 	public String getMultiCharacterOperator () { return MULTI_CHARACTER_OPERATOR; }
 	public String getExtendedOperator () { return OPERATOR_EXTENDED; }
 	public String getOperator () { return OPERATOR; }
