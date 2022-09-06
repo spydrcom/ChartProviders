@@ -5,6 +5,7 @@ import net.myorb.gui.palate.PalateTool;
 import net.myorb.data.abstractions.SimplePropertiesManager;
 
 import net.myorb.gui.components.DisplayFrame;
+import net.myorb.gui.graphics.ColorNames;
 import net.myorb.gui.graphics.ColorTools;
 
 import javax.swing.JPanel;
@@ -48,13 +49,13 @@ public class PlotLegend extends ColorTools
 		 * identify variable
 		 * @param variable name of variable used in expressions
 		 */
-		void setVariable(String variable);
+		void setVariable (String variable);
 
 		/**
 		 * get name of variable used in expressions
 		 * @return name of variable used in expressions
 		 */
-		String getVariable();
+		String getVariable ();
 
 		/**
 		 * show frame with legend
@@ -85,6 +86,9 @@ public class PlotLegend extends ColorTools
 	public static PalateTool getPalateTool () { return palate; }
 	public static final String LEGEND_IDENTIFIER = "LEGEND";
 	static PalateTool palate;
+
+	public static ColorNames.ColorList getPalateColorNames ()
+	{ return palate.getColorNames (); }
 
 
 	/**
