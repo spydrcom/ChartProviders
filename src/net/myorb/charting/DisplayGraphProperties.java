@@ -122,10 +122,11 @@ class PropertyTokensParser extends CommonCommandParser
 
 	public String getIdnLead () { return IDN_LEAD; }
 	public String getWhiteSpace () { return WHITE_SPACE; }
-	public String getSequenceCaptureMarkers () { return null; }
 	public Collection <String> getCommentIndicators () { return null; }
 	public String getMultiCharacterOperator () { return MULTI_CHARACTER_OPERATOR; }
 	public String getExtendedOperator () { return OPERATOR_EXTENDED; }
+	public String getCaptureStartMarker () { return null; }
+	public String getCaptureEndMarker () { return null; }
 	public String getOperator () { return OPERATOR; }
 	public String getIdnBody () { return IDN_BODY; }
 }
