@@ -71,6 +71,49 @@ public class DisplayGraphTypes extends DisplayImaging
 
 
 	/**
+	 * describe a field at a point
+	 *  using magnitude and angle for given point
+	 */
+	public static class VectorField extends Point
+	{
+		/**
+		 * describe chosen plot points
+		 *  where directional indicators
+		 *  are to be drawn
+		 */
+		@SuppressWarnings("serial")
+		public static class Locations
+			extends ArrayList <VectorField>
+		{}
+
+		public VectorField
+			(Point P, double magnitude, double angle)
+		{
+			super (P.x, P.y);
+			this.outOfRange = P.outOfRange;
+			this.magnitude = magnitude;
+			this.angle = angle;
+		}
+
+		public String toString ()
+		{
+			return super.toString () + " : " + vectorDescription ();
+		}
+
+		public String vectorDescription ()
+		{
+			return magnitude + " @ " + angle;
+		}
+
+		public double getMagnitude () { return magnitude; }
+		public void setMagnitude (double magnitude) { this.magnitude = magnitude; }
+		public void setAngle(double angle) { this.angle = angle; }
+		public double getAngle () { return angle; }
+		protected double magnitude, angle;
+	}
+
+
+	/**
 	 * use DataSequence2D to build Point.Series
 	 */
 	public static class PointCollection extends Point.Series
