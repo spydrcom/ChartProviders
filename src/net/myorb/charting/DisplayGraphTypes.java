@@ -171,6 +171,7 @@ public class DisplayGraphTypes extends DisplayImaging
 		void setPlotNumber (int plotNumber);
 		void setMultiplier (double multiplier);
 		double evaluateReal (double x, double y);
+		double evaluateAngle (double x, double y);
 		Object evaluateGeneric (double x, double y);
 		String identifyTransform ();
 		double getMultiplier ();
