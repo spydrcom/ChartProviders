@@ -1,17 +1,15 @@
 
 package net.myorb.charting;
 
+import net.myorb.gui.graphics.DisplayImaging;
+
+import net.myorb.data.abstractions.CommonDataStructures;
 import net.myorb.data.abstractions.CommonCommandParser;
 import net.myorb.data.abstractions.DataSequence2D;
 import net.myorb.data.abstractions.DataSequence;
 import net.myorb.data.abstractions.Function;
 
-import net.myorb.gui.graphics.DisplayImaging;
-
-import java.util.HashMap;
-import java.util.ArrayList;
 import java.util.List;
-
 import java.awt.Color;
 
 /**
@@ -25,14 +23,16 @@ public class DisplayGraphTypes extends DisplayImaging
 	/**
 	 * lists of colors for plot legends
 	 */
-	public static class Colors extends ArrayList<Color>
+	public static class Colors
+		extends CommonDataStructures.ItemList <Color>
 	{ private static final long serialVersionUID = -3409317615227644258L; }
 
 
 	/**
 	 * map function values to colors for contour plots
 	 */
-	public static class ColorMap extends HashMap<Integer,Color>
+	public static class ColorMap
+		extends CommonDataStructures.OrderedMap <Integer,Color>
 	{ private static final long serialVersionUID = 1673222062687056423L; }
 
 
@@ -43,7 +43,7 @@ public class DisplayGraphTypes extends DisplayImaging
 	{
 		public double x, y;
 		public boolean outOfRange = false;
-		public static class Series extends ArrayList<Point>
+		public static class Series extends CommonDataStructures.ItemList <Point>
 		{
 
 			/**
@@ -52,7 +52,7 @@ public class DisplayGraphTypes extends DisplayImaging
 			 * @param yData a list collecting the y coordinates from the series
 			 */
 			public void toCoordinateLists
-			(List<Number> xData, List<Number> yData)
+			(List <Number> xData, List <Number> yData)
 			{
 				for (Point p : this)
 				{
@@ -83,9 +83,15 @@ public class DisplayGraphTypes extends DisplayImaging
 		 */
 		@SuppressWarnings("serial")
 		public static class Locations
-			extends ArrayList <VectorField>
+			extends CommonDataStructures.ItemList <VectorField>
 		{}
 
+		/**
+		 * connect domain with range in function plot
+		 * @param P the Point X and Y from the function domain
+		 * @param magnitude the magnitude of the function result vector
+		 * @param angle the angle of the function result vector
+		 */
 		public VectorField
 			(Point P, double magnitude, double angle)
 		{
@@ -95,6 +101,9 @@ public class DisplayGraphTypes extends DisplayImaging
 			this.angle = angle;
 		}
 
+		/* (non-Javadoc)
+		 * @see net.myorb.charting.DisplayGraphTypes.Point#toString()
+		 */
 		public String toString ()
 		{
 			return super.toString () + " : " + vectorDescription ();
@@ -117,7 +126,7 @@ public class DisplayGraphTypes extends DisplayImaging
 	 * use DataSequence2D to build Point.Series
 	 */
 	public static class PointCollection extends Point.Series
-		implements DataSequence2D.PointCollector<Double>
+		implements DataSequence2D.PointCollector <Double>
 	{
 
 		/* (non-Javadoc)
@@ -132,7 +141,8 @@ public class DisplayGraphTypes extends DisplayImaging
 	/**
 	 * collections of plots making up a chart
 	 */
-	public static class PlotCollection extends ArrayList<Point.Series>
+	public static class PlotCollection
+		extends CommonDataStructures.ItemList <Point.Series>
 	{ private static final long serialVersionUID = 5330371539112482742L; }
 
 
@@ -180,7 +190,7 @@ public class DisplayGraphTypes extends DisplayImaging
 	/**
 	 * describe series of number making up a plot
 	 */
-	public static class RealSeries extends DataSequence<Double>
+	public static class RealSeries extends DataSequence <Double>
 	{
 		public RealSeries () {}
 		public RealSeries (List<Double> items) { this.addAll (items); }
