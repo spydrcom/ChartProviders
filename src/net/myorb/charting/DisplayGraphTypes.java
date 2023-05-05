@@ -201,7 +201,7 @@ public class DisplayGraphTypes extends DisplayImaging
 	/**
 	 * function of real numbers used to draw charts
 	 */
-	public interface RealFunction extends Function<Double> {}
+	public interface RealFunction extends Function <Double> {}
 
 
 	/*
@@ -281,7 +281,7 @@ public class DisplayGraphTypes extends DisplayImaging
 		double[][] getX ();
 
 		/**
-		 * @return x-axis coordinate
+		 * @return Y-axis coordinate
 		 */
 		double[][] getY ();
 
@@ -350,7 +350,11 @@ public class DisplayGraphTypes extends DisplayImaging
 	 * @param point an output object for values of x,y
 	 * @return the token index after the point
 	 */
-	public int parsePoint (List<CommonCommandParser.TokenDescriptor> tokens, int starting, DisplayGraphTypes.Point point)
+	public int parsePoint
+		(
+			List<CommonCommandParser.TokenDescriptor> tokens,
+			int starting, DisplayGraphTypes.Point point
+		)
 	{
 		return new PointParser (tokens, starting).parse (point);
 	}
