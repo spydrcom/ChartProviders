@@ -60,7 +60,6 @@ public class Histogram
 	public void increase (long forValue)
 	{
 		countAllPoints++;
-		sumAllPoints += forValue;
 		long mapTo = get (forValue);
 		if (forValue < 0) forValue = - forValue;
 		if (forValue > highest) highest = forValue + 1;
@@ -68,6 +67,7 @@ public class Histogram
 		mapping.put (forValue, ++mapTo);
 		if (mapTo  >  largestCount)
 		{ largestCount = mapTo; }
+		sumAllPoints += forValue;
 	}
 
 	/**
