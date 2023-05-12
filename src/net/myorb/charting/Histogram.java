@@ -19,6 +19,12 @@ public class Histogram
 	 * @return highest entry in series
 	 */
 	public long size () { return highest + 1; }
+	
+	/**
+	 * @return lowest value seen
+	 */
+	public long getLowest () { return lowest; }
+	public long getHighest () { return highest; }
 	private long highest = 0, lowest = Long.MAX_VALUE - 1;
 
 	/**
@@ -46,8 +52,8 @@ public class Histogram
 	public long get (long forValue)
 	{
 		long mapTo = 0;
-		if (forValue < 0)
-			forValue = - forValue;
+//		if (forValue < 0)
+//			forValue = - forValue;
 		if (mapping.containsKey (forValue))
 		{ mapTo = mapping.get (forValue); }
 		return mapTo;
@@ -61,7 +67,7 @@ public class Histogram
 	{
 		countAllPoints++;
 		long mapTo = get (forValue);
-		if (forValue < 0) forValue = - forValue;
+//		if (forValue < 0) forValue = - forValue;
 		if (forValue > highest) highest = forValue + 1;
 		if (forValue < lowest) lowest = forValue;
 		mapping.put (forValue, ++mapTo);
