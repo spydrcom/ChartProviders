@@ -475,9 +475,8 @@ public class DisplayGraphTypes extends DisplayImaging
 		(double value, double colorSelection, ScaledColorSelector selector)
 	{
 		SimpleScreenIO.Label entry =
-				new SimpleScreenIO.Label (Color.WHITE);
-		entry.setBackground (selector.mappedFrom (colorSelection));
-		entry.setText (Double.toString (value));
+			new SimpleScreenIO.Label (selector.mappedFrom (colorSelection));
+		entry.setText (" + " + Double.toString (value));
 		return entry;
 	}
 
