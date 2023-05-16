@@ -3,6 +3,8 @@ package net.myorb.charting;
 
 import net.myorb.gui.graphics.DisplayImaging;
 
+import net.myorb.gui.components.SimpleScreenIO;
+
 import net.myorb.data.abstractions.CommonDataStructures;
 import net.myorb.data.abstractions.CommonCommandParser;
 import net.myorb.data.abstractions.DataSequence2D;
@@ -357,6 +359,126 @@ public class DisplayGraphTypes extends DisplayImaging
 		)
 	{
 		return new PointParser (tokens, starting).parse (point);
+	}
+
+
+	// Legend processing
+
+
+	/**
+	 * describe the range established in a plot
+	 */
+	public interface Legend
+	{
+		/**
+		 * in the range of values give the relative ratio for the point
+		 * @return value in 0..1 relative to lowest..highest of plotted values
+		 */
+		double getRangeRelative ();
+
+		/**
+		 * get the associated value
+		 * @return the value for the point
+		 */
+		double getValue ();
+	}
+	public static class LegendEntries
+		extends CommonDataStructures.ItemList <Legend>
+	{ private static final long serialVersionUID = -6044887574380955577L; }
+
+
+	/**
+	 * build meta-data table for use building legend display
+	 * @param entryCount the number of table entries for the legend
+	 * @param histogram the histogram used to capture plot meta-data
+	 * @return the list of legend entries
+	 */
+	public static LegendEntries legendEntriesFor (int entryCount, Histogram histogram)
+	{
+		long
+			lowest = histogram.getLowest (), highest = histogram.getHighest (),
+			fullRange = highest - lowest, perEntry = fullRange / entryCount;
+		LegendEntries entries = new LegendEntries ();
+
+		for (long current = lowest; current <= highest; current += perEntry)
+		{ entries.add (mappingFor (current, histogram.relativeToRange (current))); }
+		return entries;
+	}
+	public static Legend mappingFor (final long value, final float relative)
+	{
+		return new Legend ()
+			{
+				public double getRangeRelative () { return relative; }
+				public double getValue () { return value; }
+			};
+	}
+
+
+	/**
+	 * color selection implementation description
+	 */
+	public interface ScaledColorSelector
+	{
+		/**
+		 * select color based on point in range
+		 * @param selectionRangePoint value in 0..1 relative to lowest..highest of plotted values
+		 * @return the color mapped from point
+		 */
+		Color mappedFrom (double selectionRangePoint);
+	}
+
+
+	/**
+	 * a list of screen components holding Legend meta-data
+	 */
+	public static class LegendWidgets
+		extends CommonDataStructures.ItemList < SimpleScreenIO.Widget >
+	{ private static final long serialVersionUID = -1098927143727951391L; }
+
+
+	/**
+	 * build a series of display widget for a legend
+	 * @param entries the meta-data that described the legend elements
+	 * @param multiplier the multiplier factored into the plot construction
+	 * @param selector a selection object synchronized with the selection criteria
+	 * @return the list of widgets that will make up the legend
+	 */
+	public static LegendWidgets legendWidgetsFor
+		(LegendEntries entries, double multiplier, ScaledColorSelector selector)
+	{
+		LegendWidgets widgets = new LegendWidgets ();
+
+		for (Legend L : entries)
+		{
+			widgets.add
+			(
+				widgetFor
+				(
+					L.getValue () / multiplier,
+					L.getRangeRelative (), selector
+				)
+			);
+		}
+
+		return widgets;
+	}
+
+
+	/**
+	 * allocate a display widget for a legend entry
+	 * @param value the value of the function being described
+	 * @param colorSelection the color assigned to the area of the value
+	 * @param selector a selection object synchronized with the selection criteria
+	 * @return a screen widget for the entry
+	 */
+	public static SimpleScreenIO.Widget widgetFor
+		(double value, double colorSelection, ScaledColorSelector selector)
+	{
+		SimpleScreenIO.Label entry =
+				new SimpleScreenIO.Label (Color.WHITE);
+		entry.setBackground (selector.mappedFrom (colorSelection));
+		entry.setText (Double.toString (value));
+		return entry;
 	}
 
 
