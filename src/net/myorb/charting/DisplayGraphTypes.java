@@ -343,7 +343,7 @@ public class DisplayGraphTypes extends DisplayImaging
 	 */
 	public interface ContourPlotDescriptor
 	extends ViewSpace, Transform3D, ContourColorScheme, TransformRealization
-	{}
+	{ void buildLegendWidgetsFor (Histogram histogram); }
 
 
 	/**
@@ -476,7 +476,7 @@ public class DisplayGraphTypes extends DisplayImaging
 	{
 		SimpleScreenIO.Label entry =
 			new SimpleScreenIO.Label (selector.mappedFrom (colorSelection));
-		entry.setText (" + " + Double.toString (value));
+		entry.setText (" [ " + Double.toString (value) + " ] ");
 		return entry;
 	}
 
