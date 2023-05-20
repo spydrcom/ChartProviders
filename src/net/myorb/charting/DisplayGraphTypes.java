@@ -400,7 +400,7 @@ public class DisplayGraphTypes extends DisplayImaging
 			fullRange = highest - lowest, perEntry = fullRange / entryCount;
 		LegendEntries entries = new LegendEntries ();
 
-		for (long current = lowest; current <= highest; current += perEntry)
+		for (long current = lowest; current < highest; current += perEntry)
 		{ entries.add (mappingFor (current, histogram.relativeToRange (current))); }
 		return entries;
 	}
