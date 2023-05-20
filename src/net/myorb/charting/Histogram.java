@@ -28,6 +28,14 @@ public class Histogram
 	private long highest = 0, lowest = Long.MAX_VALUE - 1;
 
 	/**
+	 * initialize range of histogram
+	 * @param highest high value of range
+	 * @param lowest low value of range
+	 */
+	public void setRange (long highest, long lowest)
+	{ this.highest = highest; this.lowest = lowest; }
+
+	/**
 	 * @return highest increase in series
 	 */
 	public long max () { return largestCount; }
